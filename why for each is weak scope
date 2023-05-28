@@ -1,0 +1,23 @@
+/* WHY WE CALLED FOR EACH A WEAK SCOPE */
+
+/* Example 1 */
+for each Order no-lock:
+end.
+disp Order.orderNum.
+/* 
+In Example 1 it will give us an error - ** No Order record is available. (91). So why we called for each a weak scope as it is not allowing us to access the records outside of for each loop 
+*/
+/* Below are the 2 examples where Order records is accesible outside of for each loop 
+*/
+
+/* Example 2 */
+for each Order no-lock:
+leave.
+end.
+disp orderNum.
+
+/* Example 3 */
+for each Order no-lock break by OrderNum:
+disp orderNum.
+end.
+disp "Outside Scope" orderNum.
