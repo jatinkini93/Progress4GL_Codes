@@ -1,0 +1,56 @@
+/* WHY FIND IS FAILED */
+/*
+Find gets failed when it returns either 0 or many records
+we can use ambiguous to check if there are multiple records or not.
+*/
+
+/* just executed a for each to see all orders of customer 3000 */
+for each order  where custnum = 3000 no-lock :
+disp ordernum custnum .
+end.
+/* OUTPUT 
+ Order Num Cust Num
+---------- --------
+     10025     3000
+     10175     3000
+     10390     3000
+     10880     3000
+     10920     3000
+     11060     3000
+     11065     3000
+     11070     3000
+     11095     3000
+     29655     3000
+     29660     3000
+     29670     3000
+     29680     3000
+     29685     3000
+     29690     3000
+     29695     3000
+     29700     3000
+     29705     3000
+     29715     3000
+     */
+
+/* Example 1 */
+find order where custnum = 3000 no-lock no-error.
+if not available order
+then do:
+    if ambiguous Order
+    then disp "Multiple records available".
+    else disp "No order available".
+end.
+
+/* Example 2 - there is no customer with custnum as 0 */
+find order where custnum = 0 no-lock no-error.
+if not available order
+then do:
+    if ambiguous Order
+    then disp "Multiple records available".
+    else disp "No order available".
+end.
+
+/* 
+Example 1 output - Multiple records available
+Example 2 output - No order available
+*/
