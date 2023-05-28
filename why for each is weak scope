@@ -7,7 +7,9 @@ disp Order.orderNum.
 /* 
 In Example 1 it will give us an error - ** No Order record is available. (91). So why we called for each a weak scope as it is not allowing us to access the records outside of for each loop 
 */
-/* Below are the 2 examples where Order records is accesible outside of for each loop 
+/* 
+Below are the 2 examples where Order records is accesible outside of for each loop 
+And thats the reason why we called for each as a weak scope
 */
 
 /* Example 2 */
